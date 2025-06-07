@@ -67,7 +67,7 @@ void loop() {
       }
     }
   }
-  if (inSleepMode == LOW && millis() - lastClickTime > SleepAfterMillis) {
+  if (inSleepMode == LOW && timer_on == LOW && millis() - lastClickTime > SleepAfterMillis) {
     Serial.println("going to sleep");
     display.ssd1306_command(SSD1306_DISPLAYOFF);
     inSleepMode = HIGH;
@@ -87,8 +87,12 @@ void loop() {
     display.print("Time:");
     display.println(elapsedTime);
     display.println();
-    display.println("press button to start timer");
-    display.display();    
+    display.setCursor(5, 32);
+    display.setTextSize(2);
+    display.println("press|");
+    display.setCursor(5, 40);
+    display.println("     V");  
+    display.display();  
   }
 }
 
